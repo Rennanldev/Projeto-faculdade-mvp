@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f5f1;
+  color: #333;
+}
+#logo {
+    width: 200px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+header {
+  background-color: #4b6244;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #4b6244;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4b6244;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #3b4f36;
+}
+
+.voltar {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.voltar a {
+  text-decoration: none;
+  color: #4b6244;
+  font-weight: bold;
+}
+
+.voltar a:hover {
+  text-decoration: underline;
+}
