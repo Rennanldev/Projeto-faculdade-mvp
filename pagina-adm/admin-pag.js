@@ -101,7 +101,7 @@ function adicionarBotaoExcluirEmTodosOsCards() {
             deleteBtn.classList.add('delete-btn');
             deleteBtn.addEventListener('click', () => {
                 if (confirm("Deseja realmente excluir este evento?")) {
-                    alert('Este evento foi removido da tela apenas como simulação. Ao recarregar a página, ele aparecerá novamente porque os dados ainda estão fixos no HTML e acontece o mesmo para os que foram acabados de serem criados .')
+                    alert('Este evento foi removido da tela apenas como simulação. Ao recarregar a página, ele aparecerá novamente porque os eventos estão fixos no HTML e acontece o mesmo para os que foram acabados de serem criados .')
                     card.remove();
                 }
             });
