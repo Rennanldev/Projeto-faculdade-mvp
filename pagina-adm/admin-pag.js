@@ -41,9 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Limpa os campos do formulário e o esconde
         form.reset();
         formContainer.style.display = 'none';
-
-        // Alerta de sucesso
-        alert("Evento salvo com imagem local! ⚠️ Lembre-se que, sem backend, a imagem não será salva após recarregar a página.");
+        alert("Evento salvo com imagem local! ⚠️ como não possui banco de dados no momento, ao recarregar a pagina o evento sera excluido automaticamente e não aparecerá no eventos (usuario comum) nem mesmo para o administrador");
     });
 
     // Adiciona botão de excluir nos cards fixos (que já estavam na tela)
@@ -103,6 +101,7 @@ function adicionarBotaoExcluirEmTodosOsCards() {
             deleteBtn.classList.add('delete-btn');
             deleteBtn.addEventListener('click', () => {
                 if (confirm("Deseja realmente excluir este evento?")) {
+                    alert('Este evento foi removido da tela apenas como simulação. Ao recarregar a página, ele aparecerá novamente porque os dados ainda estão fixos no HTML e acontece o mesmo para os que foram acabados de serem criados .')
                     card.remove();
                 }
             });
