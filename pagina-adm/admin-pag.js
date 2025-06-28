@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const formContainer = document.getElementById('event-form-container');
     const form = document.getElementById('event-form');
 
-    // Quando o botão "Adicionar Evento" for clicado, mostra o formulário
+    // quando clicar no botao adicionar evento o formulario aparece
     addBtn.addEventListener('click', () => {
         formContainer.style.display = 'block';
     });
 
-    // Quando o botão "Cancelar" for clicado, esconde o formulário
+    // se clicar em cancelar do formulario ele esconde
     cancelBtn.addEventListener('click', () => {
         formContainer.style.display = 'none';
     });
@@ -20,47 +20,48 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', function (e) {
         e.preventDefault(); // Impede o recarregamento da página
 
-        // Coleta os valores digitados nos campos
+        // pega os valores que estao sendo digitados
         const titulo = document.getElementById('event-title').value.trim();
         const data = document.getElementById('event-date').value.trim();
         const local = document.getElementById('event-local').value.trim();
         const tema = document.getElementById('event-theme').value.trim();
-        const imagem = document.getElementById('event-image').value.trim();
+
+        const imagemInput = document.getElementById('event-image');
+        const imagemFile = imagemInput.files[0]; // pega o arquivo local selecionado
 
         // Verifica se todos os campos estão preenchidos
-        if (!titulo || !data || !local || !tema || !imagem) {
+        if (!titulo || !data || !local || !tema || !imagemFile) {
             alert("Preencha todos os campos corretamente.");
             return;
         }
 
         // Cria o card visual do evento
-        criarCardEvento(titulo, data, local, tema, imagem);
+        criarCardEvento(titulo, data, local, tema, imagemFile);
 
         // Limpa os campos do formulário e o esconde
         form.reset();
         formContainer.style.display = 'none';
 
         // Alerta de sucesso
-        alert("Evento salvo com sucesso nesta página!\n\n⚠️ Atenção: como este site ainda não usa banco de dados, o evento não aparecerá na página pública de eventos.");
+        alert("Evento salvo com imagem local! ⚠️ Lembre-se que, sem backend, a imagem não será salva após recarregar a página.");
     });
 
     // Adiciona botão de excluir nos cards fixos (que já estavam na tela)
     adicionarBotaoExcluirEmTodosOsCards();
 });
 
-
-// Cria visualmente o card do evento na tela
-function criarCardEvento(titulo, data, local, tema, imagemURL) {
+// Cria o card do evento na tela
+function criarCardEvento(titulo, data, local, tema, imagemFile) {
     const card = document.createElement('div');
     card.classList.add('card-evento');
 
     const img = document.createElement('img');
-    img.src = imagemURL;
+    img.src = URL.createObjectURL(imagemFile); // cria URL temporária da imagem local
     img.alt = titulo;
 
-    // Caso a imagem não carregue, exibe alerta e remove o <img>
+    // se a imagem não carregar aparece um alerta
     img.onerror = () => {
-        alert("Não foi possível carregar a imagem. Verifique a URL.");
+        alert("Não foi possível carregar a imagem.");
         img.remove();
     };
 
@@ -81,8 +82,7 @@ function criarCardEvento(titulo, data, local, tema, imagemURL) {
     deleteBtn.textContent = 'Excluir';
     deleteBtn.classList.add('delete-btn');
     deleteBtn.addEventListener('click', () => {
-        const confirmar = confirm("Deseja realmente excluir este evento?");
-        if (confirmar) {
+        if (confirm("Deseja realmente excluir este evento?")) {
             card.remove();
         }
     });
@@ -92,8 +92,7 @@ function criarCardEvento(titulo, data, local, tema, imagemURL) {
     document.querySelector('.container-cards-eventos').appendChild(card);
 }
 
-
-// Adiciona botão de excluir nos cards que já estavam no HTML
+// Adiciona botão de excluir nos cards que ja existem
 function adicionarBotaoExcluirEmTodosOsCards() {
     const cards = document.querySelectorAll('.card-evento');
     cards.forEach(card => {
@@ -103,8 +102,7 @@ function adicionarBotaoExcluirEmTodosOsCards() {
             deleteBtn.textContent = 'Excluir';
             deleteBtn.classList.add('delete-btn');
             deleteBtn.addEventListener('click', () => {
-                const confirmar = confirm("Deseja realmente excluir este evento?");
-                if (confirmar) {
+                if (confirm("Deseja realmente excluir este evento?")) {
                     card.remove();
                 }
             });
